@@ -32,7 +32,7 @@ function WelcomePage() {
       case 6:
         day = "Sat";
         break;
-      case 7:
+      case 0:
         day = "Sun";
         break;
     }

@@ -20,6 +20,8 @@ import Control from "./views/control";
 import ControlCreate from "./views/controlCreate";
 import Task from "./views/task";
 import Unfollow from "./views/Unfollow";
+import Help from "./views/help";
+import FutureFeature from "./views/futureFeature";
 
 function App() {
   return (
@@ -144,7 +146,22 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route>
-              
+              <Route
+                path="/info"
+                element={
+                  <ProtectedRoute>
+                    <Help />
+                  </ProtectedRoute>
+                }
+              ></Route>
+              <Route
+                path="/comingSoon"
+                element={
+                  <ProtectedRoute>
+                    <FutureFeature />
+                  </ProtectedRoute>
+                }
+              ></Route>
               <Route
                 path="/lists"
                 element={

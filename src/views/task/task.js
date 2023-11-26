@@ -190,7 +190,7 @@ function Task() {
         </Panel>
         <br />
         <Panel bordered>
-          <h3>Log</h3>
+          <h3>Log {"(" + log?.length + ")"}</h3>
           <hr />
           <div className="h-[500px] shadow-inner bg-[#fafafa] text-[#000] overflow-auto p-[25px]">
             <p>--------------------------------------------------------</p>
@@ -205,7 +205,11 @@ function Task() {
           <h3>List {"(" + list?.length + ")"}</h3>
           <hr />
           <div className="h-[250px] shadow-inner bg-[#fafafa] text-[#000] overflow-auto p-[25px]">
-            <Button onClick={navigator.clipboard.writeText(list)} />
+            <Button
+              onClick={() => {
+                navigator.clipboard.writeText(list);
+              }}
+            />
             <p>--------------------------------------------------------</p>
             {list?.map((item) => (
               <p>

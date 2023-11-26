@@ -16,7 +16,7 @@ import { useAuth } from "../../hooks/Auth";
 import { getAccounts } from "../../api/accounts";
 import BackButton from "../../components/backButton";
 
-function Unfollow() {
+function Spree() {
   const { user } = useAuth();
   const { id } = useParams();
 
@@ -70,7 +70,6 @@ function Unfollow() {
           setGenlist(data.gen_list);
           setTargetType(data.target_type);
           setList(data.list);
-          setListLength(data.list_length);
           setTarget(data.target);
         }
       };
@@ -91,40 +90,26 @@ function Unfollow() {
   const createTask = async function () {
     let errors = runValidations();
 
-    let username = "";
-
-    console.log(accounts[1].value);
-
-    for (let i = 0; i < accounts.length; i++) {
-      if (accounts[i].value == account) {
-        username = accounts[i].label;
-      }
-    }
-
-    console.log(username);
-
     if (!errors) {
       const { data, error } = await supabase
         .from("tasks")
         .insert({
           tsk_type: "Un",
-          name: "Unfollow",
+          name: name,
           acct_id: account,
-          description: "Unfollow Task",
-          allow_follow: false,
-          follow_limit: 0,
-          allow_like: false,
-          like_limit: 0,
-          allow_comment: false,
-          comment_limit: 0,
-          allow_message: false,
-          message_limit: 0,
+          description: description,
+          allow_follow: allowFollow,
+          follow_limit: followLimit,
+          allow_like: allowLike,
+          like_limit: likeLimit,
+          allow_comment: allowComment,
+          comment_limit: commentLimit,
+          allow_message: allowMessage,
+          message_limit: messageLimit,
           drip: drip,
           gen_list: genlist,
-          target_type: "User Following",
-          target: username,
+          target: target,
           list: list,
-          list_length: listLength,
           status: "Scheduled",
         })
         .select();
@@ -147,6 +132,10 @@ function Unfollow() {
         "you must select an account to run this task or just save as a draft"
       );
     }
+
+    if (!allowFollow && !allowComment && !allowLike && !allowMessage) {
+      errors.push("At lease one interaction type needs to be enabled");
+    }
     return errors.length <= 0 ? null : errors;
   };
 
@@ -155,7 +144,7 @@ function Unfollow() {
       <div className="max-w-5xl mx-auto">
         {" "}
         <h1>
-          <BackButton path={"/tasks"} /> New Task
+          <BackButton path={"/tasks"} /> New Spree
         </h1>
         <Panel bordered>
           <div>
@@ -164,9 +153,7 @@ function Unfollow() {
             <label>Account</label>
             <SelectPicker
               block
-              onChange={(e) => {
-                setAccount(e);
-              }}
+              onChange={(e) => setAccount(e)}
               value={account}
               searchable={false}
               data={accounts}
@@ -223,16 +210,6 @@ function Unfollow() {
           <br />
         </Panel>
         <br />
-        <Panel bordered>
-          <h3>Drip</h3>
-          <hr />
-          <p>
-            Drip refers to the minimum time interval necessary between
-            interactions, such as following, liking, commenting, and messaging.
-          </p>
-          <InputNumber value={drip} onChange={setDrip} placeholder="20" />
-        </Panel>
-        <br />
         <Button appearance="subtle" as={NavLink} to={"/tasks"}>
           Discard
         </Button>
@@ -245,9 +222,7 @@ function Unfollow() {
           {id ? (
             <Button appearance="primary">Save and Run</Button>
           ) : (
-            <Button appearance="primary" onClick={createTask}>
-              Save and Run
-            </Button>
+            <Button appearance="primary">Save and Run</Button>
           )}
         </Stack>
       </div>
@@ -255,4 +230,4 @@ function Unfollow() {
   );
 }
 
-export default Unfollow;
+export default Spree;

@@ -22,6 +22,7 @@ import Task from "./views/task";
 import Unfollow from "./views/Unfollow";
 import Help from "./views/help";
 import FutureFeature from "./views/futureFeature";
+import Spree from "./views/Spree";
 
 function App() {
   return (
@@ -143,6 +144,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Unfollow />
+                  </ProtectedRoute>
+                }
+              ></Route>
+                            <Route
+                path="/Spree"
+                element={
+                  <ProtectedRoute>
+                    <Spree />
                   </ProtectedRoute>
                 }
               ></Route>

@@ -405,6 +405,7 @@ function TasksCreate() {
                 onChange={setTargetType}
                 searchable={false}
                 data={targetTypes}
+                disabledItemValues={["Post Commenters"]}
               />
               <br />
               <label>List Target</label>

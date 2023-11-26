@@ -104,48 +104,92 @@ function MainNavigation() {
 
               <br />
               <Panel bordered>
-                <Nav.Item
-                  onClick={() => setOpen(false)}
-                  style={{ padding: "0px" }}
-                  to={"/comingSoon"}
-                  as={NavLink}
-                >
-                  <Act width="50px" />
-                  <p>
-                    Complete simple actions on a given account instantly or at a
-                    scheduled time
-                  </p>
-                </Nav.Item>
+                <Act width="50px" />
+                <p>
+                  Complete simple actions on a given account instantly or at a
+                  scheduled time
+                </p>
+                <p>
+                  <Nav.Item
+                    onClick={() => setOpen(false)}
+                    style={{ padding: "0px" }}
+                    to={"/comingsoon"}
+                    as={NavLink}
+                  >
+                    New
+                  </Nav.Item>{" "}
+                  |
+                  <Nav.Item
+                    onClick={() => setOpen(false)}
+                    style={{ padding: "0px" }}
+                    to={"/comingsoon"}
+                    as={NavLink}
+                  >
+                    Open
+                  </Nav.Item>
+                </p>
               </Panel>
               <br />
               <Panel bordered>
-                <Nav.Item
-                  onClick={() => setOpen(false)}
-                  style={{ padding: "0px" }}
-                  to={"/tasks"}
-                  as={NavLink}
-                >
-                  <Tsk width="50px" />
-                  <p>
-                    Complete mass actions on a list of users from a given
-                    account instantly or at a scheduled time
-                  </p>
-                </Nav.Item>
+                <Tsk width="50px" />
+                <p>
+                  Complete mass actions on a list of users from a given account
+                  instantly or at a scheduled time
+                </p>
+                <p>
+                  <Nav.Item
+                    onClick={() => setOpen(false)}
+                    style={{ padding: "0px" }}
+                    to={"/tasks/new"}
+                    as={NavLink}
+                  >
+                    New
+                  </Nav.Item>{" "}
+                  |
+                  <Nav.Item
+                    onClick={() => setOpen(false)}
+                    style={{ padding: "0px" }}
+                    to={"/tasks"}
+                    as={NavLink}
+                  >
+                    Open
+                  </Nav.Item>
+                </p>
               </Panel>
               <br />
               <Panel bordered>
-                <Nav.Item
-                  onClick={() => setOpen(false)}
-                  style={{ padding: "0px" }}
-                  to={"/comingSoon"}
-                  as={NavLink}
-                >
-                  <Spree width="50px" />
-                  <p>
-                    Complete mass actions aginst a given account instantly or at
-                    a scheduled time
-                  </p>
-                </Nav.Item>
+                <Spree width="50px" />
+                <p>
+                  Complete mass actions aginst a given account instantly or at a
+                  scheduled time
+                </p>
+                <p>
+                  <Nav.Item
+                    onClick={() => setOpen(false)}
+                    style={{ padding: "0px" }}
+                    to={"/comingsoon"}
+                    as={NavLink}
+                  >
+                    New
+                  </Nav.Item>{" "}
+                  | <a>Open</a>
+                </p>
+              </Panel>
+              <br />
+              <Panel bordered>
+                <Un width="50px" />
+                <p>Un-follow based on configuration and list</p>
+                <p>
+                  <Nav.Item
+                    onClick={() => setOpen(false)}
+                    style={{ padding: "0px" }}
+                    to={"/Unfollow"}
+                    as={NavLink}
+                  >
+                    New
+                  </Nav.Item>{" "}
+                  | <a>Open</a>
+                </p>
               </Panel>
               <br />
               <Panel bordered>
@@ -158,24 +202,6 @@ function MainNavigation() {
                   <Tri width="50px" />
                   <p>
                     Create scenarios that will trigger tasks from other apps
-                  </p>
-                </Nav.Item>
-              </Panel>
-              <br />
-              <Panel bordered>
-                <Nav.Item
-                  onClick={() => setOpen(false)}
-                  style={{ padding: "0px" }}
-                  to={"/Unfollow"}
-                  as={NavLink}
-                >
-                  <Un width="50px" />
-                  <p>Un-follow based on configuration and list</p>
-                  <p>
-                    <a to={"/Unfollow"} as={NavLink}>
-                      New
-                    </a>{" "}
-                    <a>Open</a>
                   </p>
                 </Nav.Item>
               </Panel>

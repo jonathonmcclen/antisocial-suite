@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Panel, Stack, Table, Tooltip, Whisper } from "rsuite";
+import SearchIcon from "@rsuite/icons/Search";
+import {
+  Button,
+  Panel,
+  Stack,
+  Table,
+  Tooltip,
+  Whisper,
+  InputPicker,
+  InputGroup,
+  Input,
+  SelectPicker,
+} from "rsuite";
 import { GiCancel } from "react-icons/gi";
 import {
   BiSolidCopy,
@@ -22,14 +34,45 @@ import {
 import ToolTip from "../../components/toolTip";
 const { Column, HeaderCell, Cell } = Table;
 import { getArchivedTasks, archiveTask, getTasks } from "../../api/tasks";
+import { getAccounts } from "../../api/accounts";
+
+const Statuses = [
+  "Draft",
+  "Completed",
+  "Failed",
+  "In Progress",
+  "Canceled",
+  "Archived",
+  "Aborted",
+].map((item) => ({ label: item, value: item }));
+
+const TaskType = ["Ctrl", "Task", "Un", "Spree"].map((item) => ({
+  label: item,
+  value: item,
+}));
 
 function Tasks() {
   const [data, setData] = useState([]);
+  const [accounts, setAccounts] = useState([]);
+
+  const [account, setAccount] = useState(null);
+  const [type, setType] = useState(null);
+  const [status, setStatus] = useState(null);
+  const [search, setSearch] = useState(null);
 
   useEffect(() => {
     let data = getTasks().then((data) => {
       console.log(data);
       setData(data);
+    });
+
+    getAccounts().then((data) => {
+      setAccounts(
+        data.map((accnt) => ({
+          label: accnt.username,
+          value: accnt.id,
+        }))
+      );
     });
   }, []);
 
@@ -43,6 +86,53 @@ function Tasks() {
       .select();
 
     window.location.href = "/tasks";
+  };
+
+  const filterTasks = async function (id) {
+    if (status || account || type) {
+      if (status && !account && !type) {
+        const { data, error } = await supabase
+          .from("tasks")
+          .select("*")
+          .eq("status", status);
+        setData(data);
+      } else if (status && account && !type) {
+        const { data, error } = await supabase
+          .from("tasks")
+          .select("*")
+          .eq("status", status)
+          .eq("acct_id", account);
+        setData(data);
+      } else if (status && !account && type) {
+        const { data, error } = await supabase
+          .from("tasks")
+          .select("*")
+          .eq("status", status)
+          .eq("tsk_type", type);
+        setData(data);
+      } else if (!status && account && !type) {
+        const { data, error } = await supabase
+          .from("tasks")
+          .select("*")
+          .eq("acct_id", account);
+        setData(data);
+      } else if (!status && account && type) {
+        const { data, error } = await supabase
+          .from("tasks")
+          .select("*")
+          .eq("tsk_type", type)
+          .eq("acct_id", account);
+        setData(data);
+      } else if (!status && !account && type) {
+        const { data, error } = await supabase
+          .from("tasks")
+          .select("*")
+          .eq("tsk_type", type);
+        setData(data);
+      }
+    } else {
+      console.log("no filter");
+    }
   };
 
   return (
@@ -62,6 +152,57 @@ function Tasks() {
             width: "100%",
           }}
         >
+          <Panel bordered>
+            <div className="grid grid-cols-4">
+              <div>
+                <div>Search</div>
+                <InputGroup style={{ width: 224 }}>
+                  <Input placeholder={"Search"} />
+                  <InputGroup.Addon>
+                    <SearchIcon />
+                  </InputGroup.Addon>
+                </InputGroup>
+              </div>
+              <div>
+                <div>
+                  <label>Status</label>
+                </div>
+
+                <InputPicker
+                  onChange={(e) => setStatus(e)}
+                  value={status}
+                  data={Statuses}
+                  style={{ width: 224 }}
+                />
+              </div>
+              <div>
+                <div>
+                  <label>Type</label>
+                </div>
+
+                <InputPicker
+                  onChange={(e) => setType(e)}
+                  value={type}
+                  data={TaskType}
+                  style={{ width: 224 }}
+                />
+              </div>
+              <div>
+                <div>
+                  <label>Account</label>
+                </div>
+                <SelectPicker
+                  onChange={(e) => setAccount(e)}
+                  value={account}
+                  searchable={true}
+                  data={accounts}
+                  style={{ width: 224 }}
+                />
+                <button onClick={filterTasks}>Apply Filter</button>
+              </div>
+            </div>
+          </Panel>
+          <br />
           <Table
             cellBordered
             bordered
@@ -83,7 +224,7 @@ function Tasks() {
 
             <Column width={100}>
               <HeaderCell>Type</HeaderCell>
-              <Cell dataKey="created" />
+              <Cell dataKey="tsk_type" />
             </Column>
             <Column width={100} align="center" fixed="right">
               <HeaderCell>Status</HeaderCell>

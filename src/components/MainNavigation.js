@@ -113,16 +113,16 @@ function MainNavigation() {
                   <Nav.Item
                     onClick={() => setOpen(false)}
                     style={{ padding: "0px" }}
-                    to={"/comingsoon"}
+                    to={"/control"}
                     as={NavLink}
                   >
                     New
                   </Nav.Item>{" "}
-                  |
+                  |{" "}
                   <Nav.Item
                     onClick={() => setOpen(false)}
                     style={{ padding: "0px" }}
-                    to={"/comingsoon"}
+                    to={"/tasks"}
                     as={NavLink}
                   >
                     Open
@@ -145,7 +145,7 @@ function MainNavigation() {
                   >
                     New
                   </Nav.Item>{" "}
-                  |
+                  |{" "}
                   <Nav.Item
                     onClick={() => setOpen(false)}
                     style={{ padding: "0px" }}
@@ -167,12 +167,20 @@ function MainNavigation() {
                   <Nav.Item
                     onClick={() => setOpen(false)}
                     style={{ padding: "0px" }}
-                    to={"/comingsoon"}
+                    to={"/spree"}
                     as={NavLink}
                   >
                     New
                   </Nav.Item>{" "}
-                  | <a>Open</a>
+                  |{" "}
+                  <Nav.Item
+                    onClick={() => setOpen(false)}
+                    style={{ padding: "0px" }}
+                    to={"/tasks"}
+                    as={NavLink}
+                  >
+                    Open
+                  </Nav.Item>
                 </p>
               </Panel>
               <br />
@@ -188,7 +196,15 @@ function MainNavigation() {
                   >
                     New
                   </Nav.Item>{" "}
-                  | <a>Open</a>
+                  |{" "}
+                  <Nav.Item
+                    onClick={() => setOpen(false)}
+                    style={{ padding: "0px" }}
+                    to={"/tasks"}
+                    as={NavLink}
+                  >
+                    Open
+                  </Nav.Item>
                 </p>
               </Panel>
               <br />

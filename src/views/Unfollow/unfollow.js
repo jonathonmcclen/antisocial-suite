@@ -155,7 +155,7 @@ function Unfollow() {
       <div className="max-w-5xl mx-auto">
         {" "}
         <h1>
-          <BackButton path={"/tasks"} /> New Task
+          <BackButton path={"/tasks"} /> New Unfollow
         </h1>
         <Panel bordered>
           <div>
@@ -231,6 +231,20 @@ function Unfollow() {
             interactions, such as following, liking, commenting, and messaging.
           </p>
           <InputNumber value={drip} onChange={setDrip} placeholder="20" />
+        </Panel>
+        <br />
+        <Panel bordered>
+          <h3>Schedule</h3>
+          <hr />
+          <p>
+            Schedule this task for a later date and time. Leave blank to run
+            Immediately
+          </p>
+          <DatePicker
+            value={dateTime}
+            onChange={setDateTime}
+            format="yyyy-MM-dd HH:mm"
+          />
         </Panel>
         <br />
         <Button appearance="subtle" as={NavLink} to={"/tasks"}>

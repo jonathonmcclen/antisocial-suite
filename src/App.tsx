@@ -155,6 +155,14 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route>
+                                          <Route
+                path="/Ctrl"
+                element={
+                  <ProtectedRoute>
+                    <Control />
+                  </ProtectedRoute>
+                }
+              ></Route>
               <Route
                 path="/info"
                 element={

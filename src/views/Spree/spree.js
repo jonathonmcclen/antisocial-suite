@@ -40,6 +40,15 @@ function Spree() {
   const [list, setList] = useState("");
   const [listLength, setListLength] = useState(100);
 
+  const [allowLike, setAllowLike] = useState(true);
+  const handleLike = () => setAllowLike(!allowLike);
+  const [likeLimit, setLikeLimit] = useState(0);
+
+  const [allowComment, setAllowComment] = useState(true);
+  const handleComment = () => setAllowComment(!allowComment);
+  const [commentLimit, setCommentLimit] = useState(0);
+  const [comments, setComments] = useState("");
+
   useEffect(() => {
     if (id) {
       const getTask = async function () {
@@ -163,35 +172,17 @@ function Spree() {
         </Panel>
         <br />
         <Panel bordered>
-          <h3>List</h3>
+          <h3>Target</h3>
           <hr />
           <h6>
-            <Toggle
-              style={{ marginRight: "20px" }}
-              onClick={handleGen}
-              value={genlist}
-              checked={genlist}
-            />{" "}
-            generate List
+            <SelectPicker
+              block
+              onChange={(e) => setAccount(e)}
+              value={account}
+              searchable={false}
+              data={accounts}
+            />
           </h6>
-          <br />
-          {genlist ? (
-            <>
-              <br />
-              <label>List Length</label>
-              <InputNumber value={listLength} onChange={setListLength} />
-            </>
-          ) : (
-            <>
-              <Input
-                as="textarea"
-                rows={3}
-                placeholder="Target List"
-                value={list}
-                onChange={setList}
-              />
-            </>
-          )}
           <br />
         </Panel>
         <br />
@@ -199,15 +190,72 @@ function Spree() {
           <h3>Configuration</h3>
           <hr />
           <h6>
-            <Toggle style={{ marginRight: "20px" }} />
-            Ignore White List
+            <Toggle
+              style={{ marginRight: "20px" }}
+              onClick={handleLike}
+              checked={allowLike}
+              value={allowLike}
+            />
+            Like
           </h6>
           <br />
 
+          <div style={{ width: 160 }}>
+            <label>Like Limit</label>
+            <InputNumber value={likeLimit} onChange={setLikeLimit} />
+          </div>
+          <br />
           <h6>
-            <Toggle style={{ marginRight: "20px" }} /> Ignore Followers
+            <Toggle
+              style={{ marginRight: "20px" }}
+              onClick={handleComment}
+              value={allowComment}
+              checked={allowComment}
+            />{" "}
+            Comment
           </h6>
           <br />
+
+          <div style={{ width: 160 }}>
+            <label>Comment Limit</label>
+            <InputNumber value={commentLimit} onChange={setCommentLimit} />
+          </div>
+          <br />
+
+          <label>Comments</label>
+          <Input
+            value={comments}
+            onChange={setComments}
+            as="textarea"
+            rows={3}
+            placeholder="Comments"
+          />
+
+          <br />
+        </Panel>
+        <br />
+        <Panel bordered>
+          <h3>Drip</h3>
+          <hr />
+          <p>
+            Drip refers to the minimum time interval necessary between
+            interactions, such as following, liking, commenting, and messaging.
+          </p>
+          <InputNumber value={drip} onChange={setDrip} placeholder="20" />
+        </Panel>
+        <br />
+        <Panel bordered>
+          <h3>Schedule</h3>
+          <hr />
+          <p>
+            Schedule this task for a later date and time. Leave blank to run
+            Immediately
+          </p>
+          <DatePicker
+            value={dateTime}
+            onChange={setDateTime}
+            format="yyyy-MM-dd HH:mm"
+          />
         </Panel>
         <br />
         <Button appearance="subtle" as={NavLink} to={"/tasks"}>

@@ -135,6 +135,13 @@ function AccountEdit() {
 
   return (
     <>
+      <iframe
+        width="320"
+        height="440"
+        src={`https://www.instagram.com/${username}/embed/`}
+        frameborder="0"
+      ></iframe>
+
       <div style={{ margin: "50px" }}>
         <h1>
           <BackButton path={"/accounts"} /> Account

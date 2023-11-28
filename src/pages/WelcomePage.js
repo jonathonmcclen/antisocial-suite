@@ -2,10 +2,13 @@ import { Badge, Panel, Stack } from "rsuite";
 import Packages from "../views/packages";
 import { useEffect, useState } from "react";
 import { supabaseClient as supabase } from "../config/supabase-client";
+import ReleaseNotes from "../components/ReleaseNotes";
 
 function WelcomePage() {
   const [serviceStatus, setServiceStatus] = useState({});
   const [time, setTime] = useState("");
+  const [releases, setReleases] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   function getTime() {
     const now = new Date();
@@ -58,6 +61,24 @@ function WelcomePage() {
     };
     sellItem();
     getTime();
+
+    async function getReleases() {
+      setLoading(true);
+
+      let { data, error } = await supabase
+        .from("release_notes")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.warn(error);
+      } else if (data) {
+        setReleases(data);
+      }
+      setLoading(false);
+    }
+
+    getReleases();
   }, []);
 
   return (
@@ -91,7 +112,7 @@ function WelcomePage() {
               </Badge>
               <br />
               {serviceStatus["insta_follow"]}
-              <p>description of status</p>
+              <p>{serviceStatus["follow_desc"]}</p>
             </Panel>
             <Panel bordered shaded>
               <Badge
@@ -105,7 +126,7 @@ function WelcomePage() {
               </Badge>
               <br />
               {serviceStatus["insta_like"]}
-              <p>description of status</p>
+              <p>{serviceStatus["like_desc"]}</p>
             </Panel>
             <Panel bordered shaded>
               <Badge
@@ -119,7 +140,7 @@ function WelcomePage() {
               </Badge>
               <br />
               {serviceStatus["insta_comment"]}
-              <p>description of status</p>
+              <p>{serviceStatus["comment_desc"]}</p>
             </Panel>
             <Panel bordered shaded>
               <Badge
@@ -133,7 +154,7 @@ function WelcomePage() {
               </Badge>
               <br />
               {serviceStatus["insta_message"]}
-              <p>description of status</p>
+              <p>{serviceStatus["message_desc"]}</p>
             </Panel>
             <Panel bordered shaded>
               <Badge
@@ -147,7 +168,7 @@ function WelcomePage() {
               </Badge>
               <br />
               {serviceStatus["insta_unfollow"]}
-              <p>description of status</p>
+              <p>{serviceStatus["unfollow_desc"]}</p>
             </Panel>
             <Panel bordered shaded>
               <Badge
@@ -161,11 +182,17 @@ function WelcomePage() {
               </Badge>
               <br />
               {serviceStatus["insta_posting"]}
-              <p>description of status</p>
+              <p>{serviceStatus["posting_desc"]}</p>
             </Panel>
           </div>
         </Panel>
         <br />
+        {releases.map((note) => (
+          <>
+            <ReleaseNotes header={note["header"]} content={note["content"]} />
+            <br />
+          </>
+        ))}
         {/* <Panel bordered>
           <h3>Trigger Status</h3>
           <hr />

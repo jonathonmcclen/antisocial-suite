@@ -196,10 +196,11 @@ function Unfollow() {
             </>
           ) : (
             <>
+              <label>List Length</label>
               <Input
                 as="textarea"
                 rows={3}
-                placeholder="Target List"
+                placeholder="Separate usernames with semicolon"
                 value={list}
                 onChange={setList}
               />

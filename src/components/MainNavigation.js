@@ -99,116 +99,141 @@ function MainNavigation() {
       <>
         <Drawer size="xs" open={open} onClose={() => setOpen(false)}>
           <Drawer.Body>
-            <Nav>
+            <>
               <br />
 
               <br />
-              <Panel bordered>
-                <Act width="50px" />
-                <p>
-                  Complete simple actions on a given account instantly or at a
-                  scheduled time
-                </p>
-                <p>
-                  <Nav.Item
-                    onClick={() => setOpen(false)}
-                    style={{ padding: "0px" }}
-                    to={"/control"}
-                    as={NavLink}
-                  >
-                    New
-                  </Nav.Item>{" "}
-                  |{" "}
-                  <Nav.Item
-                    onClick={() => setOpen(false)}
-                    style={{ padding: "0px" }}
-                    to={"/tasks"}
-                    as={NavLink}
-                  >
-                    Open
-                  </Nav.Item>
-                </p>
-              </Panel>
+              <div className="flex flex-row">
+                <div className="basis-1/4">
+                  <Act width="90px" />
+                </div>
+                <div className="basis-3/4">
+                  <p>
+                    Complete simple actions on a given account instantly or at a
+                    scheduled time
+                  </p>
+                  <p>
+                    <Nav>
+                      {" "}
+                      <Nav.Item
+                        onClick={() => setOpen(false)}
+                        style={{ padding: "0px" }}
+                        to={"/control"}
+                        as={NavLink}
+                      >
+                        New
+                      </Nav.Item>{" "}
+                      |{" "}
+                      <Nav.Item
+                        onClick={() => setOpen(false)}
+                        style={{ padding: "0px" }}
+                        to={"/tasks"}
+                        as={NavLink}
+                      >
+                        Open
+                      </Nav.Item>
+                    </Nav>
+                  </p>
+                </div>
+              </div>
               <br />
-              <Panel bordered>
-                <Tsk width="50px" />
-                <p>
-                  Complete mass actions on a list of users from a given account
-                  instantly or at a scheduled time
-                </p>
-                <p>
-                  <Nav.Item
-                    onClick={() => setOpen(false)}
-                    style={{ padding: "0px" }}
-                    to={"/tasks/new"}
-                    as={NavLink}
-                  >
-                    New
-                  </Nav.Item>{" "}
-                  |{" "}
-                  <Nav.Item
-                    onClick={() => setOpen(false)}
-                    style={{ padding: "0px" }}
-                    to={"/tasks"}
-                    as={NavLink}
-                  >
-                    Open
-                  </Nav.Item>
-                </p>
-              </Panel>
+              <div className="flex flex-row">
+                <div className="basis-1/4">
+                  <Tsk width="90px" />
+                </div>
+                <div className="basis-3/4">
+                  <p>
+                    Complete mass actions on a list of users from a given
+                    account instantly or at a scheduled time
+                  </p>
+                  <p>
+                    <Nav>
+                      <Nav.Item
+                        onClick={() => setOpen(false)}
+                        style={{ padding: "0px" }}
+                        to={"/tasks/new"}
+                        as={NavLink}
+                      >
+                        New
+                      </Nav.Item>{" "}
+                      |{" "}
+                      <Nav.Item
+                        onClick={() => setOpen(false)}
+                        style={{ padding: "0px" }}
+                        to={"/tasks"}
+                        as={NavLink}
+                      >
+                        Open
+                      </Nav.Item>
+                    </Nav>
+                  </p>
+                </div>
+              </div>
               <br />
-              <Panel bordered>
-                <Spree width="50px" />
-                <p>
-                  Complete mass actions aginst a given account instantly or at a
-                  scheduled time
-                </p>
-                <p>
-                  <Nav.Item
-                    onClick={() => setOpen(false)}
-                    style={{ padding: "0px" }}
-                    to={"/spree"}
-                    as={NavLink}
-                  >
-                    New
-                  </Nav.Item>{" "}
-                  |{" "}
-                  <Nav.Item
-                    onClick={() => setOpen(false)}
-                    style={{ padding: "0px" }}
-                    to={"/tasks"}
-                    as={NavLink}
-                  >
-                    Open
-                  </Nav.Item>
-                </p>
-              </Panel>
+              <div className="flex flex-row">
+                <div className="basis-1/4">
+                  <Spree width="90px" />
+                </div>
+                <div className="basis-3/4">
+                  <p>
+                    Complete mass actions aginst a given account instantly or at
+                    a scheduled time
+                  </p>
+                  <p>
+                    <Nav>
+                      <Nav.Item
+                        onClick={() => setOpen(false)}
+                        style={{ padding: "0px" }}
+                        to={"/spree"}
+                        as={NavLink}
+                      >
+                        New
+                      </Nav.Item>{" "}
+                      |{" "}
+                      <Nav.Item
+                        onClick={() => setOpen(false)}
+                        style={{ padding: "0px" }}
+                        to={"/tasks"}
+                        as={NavLink}
+                      >
+                        Open
+                      </Nav.Item>
+                    </Nav>
+                  </p>
+                </div>
+              </div>
               <br />
-              <Panel bordered>
-                <Un width="50px" />
-                <p>Un-follow based on configuration and list</p>
-                <p>
-                  <Nav.Item
-                    onClick={() => setOpen(false)}
-                    style={{ padding: "0px" }}
-                    to={"/Unfollow"}
-                    as={NavLink}
-                  >
-                    New
-                  </Nav.Item>{" "}
-                  |{" "}
-                  <Nav.Item
-                    onClick={() => setOpen(false)}
-                    style={{ padding: "0px" }}
-                    to={"/tasks"}
-                    as={NavLink}
-                  >
-                    Open
-                  </Nav.Item>
-                </p>
-              </Panel>
+              <div className="flex flex-row">
+                <div className="basis-1/4">
+                  <Un width="90px" />
+                </div>
+                <div className="basis-3/4">
+                  <p>Un-follow based on configuration and list</p>
+                  <p>
+                    <Nav>
+                      <Nav.Item
+                        onClick={() => setOpen(false)}
+                        style={{ padding: "0px" }}
+                        to={"/Unfollow"}
+                        as={NavLink}
+                      >
+                        New
+                      </Nav.Item>{" "}
+                      |{" "}
+                      <Nav.Item
+                        onClick={() => setOpen(false)}
+                        style={{ padding: "0px" }}
+                        to={"/tasks"}
+                        as={NavLink}
+                      >
+                        Open
+                      </Nav.Item>
+                    </Nav>
+                  </p>
+                </div>
+              </div>
               <br />
-              <Panel bordered>
+              {/* <Panel bordered>
                 <Nav.Item
                   onClick={() => setOpen(false)}
                   style={{ padding: "0px" }}
@@ -232,9 +257,9 @@ function MainNavigation() {
                   <Psc width="50px" />
                   <p>Schedule Posts for a given account</p>
                 </Nav.Item>
-              </Panel>
+              </Panel> */}
               <br />
-            </Nav>
+            </>
           </Drawer.Body>
         </Drawer>
       </>

@@ -204,12 +204,17 @@ function Task() {
         <Panel bordered>
           <h3>List {"(" + list?.length + ")"}</h3>
           <hr />
-          <div className="h-[250px] shadow-inner bg-[#fafafa] text-[#000] overflow-auto p-[25px]">
+          <div className="relative h-[250px] shadow-inner bg-[#fafafa] text-[#000] overflow-auto p-[25px]">
             <Button
+              appearance="primary"
+              className="absolute"
+              style={{ position: "absolute", top: "20px", right: "20px" }}
               onClick={() => {
                 navigator.clipboard.writeText(list);
               }}
-            />
+            >
+              Copy List
+            </Button>
             <p>--------------------------------------------------------</p>
             {list?.map((item) => (
               <p>

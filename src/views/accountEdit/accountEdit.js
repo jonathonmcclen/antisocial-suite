@@ -238,13 +238,13 @@ function AccountEdit() {
           </div>
           <br />
 
-          <label>Comments</label>
+          <label>Default Comments</label>
           <Input
             as="textarea"
             rows={3}
             value={comments}
             onChange={setComments}
-            placeholder="Default Comments"
+            placeholder="Separate Comments with semicolon"
           />
 
           <br />
@@ -265,13 +265,13 @@ function AccountEdit() {
           </div>
           <br />
 
-          <label>Messages</label>
+          <label>Default Messages</label>
           <Input
             as="textarea"
             value={messages}
             onChange={setMessages}
             rows={3}
-            placeholder="Default Messages"
+            placeholder="Separate messages with semicolon"
           />
           <br />
         </Panel>
@@ -290,15 +290,15 @@ function AccountEdit() {
           <h3>White List</h3>
           <hr />
           <p>
-            Drip refers to the minimum time interval necessary between
-            interactions, such as following, liking, commenting, and messaging.
+            White List is a list of users that you wish to never take NEGATIVE
+            action against. ie un-follow or Block.
           </p>
           <Input
             as="textarea"
             value={whiteList}
             onChange={setWhiteList}
             rows={3}
-            placeholder="User_1, User_2, User_3"
+            placeholder="Separate users with semicolon"
           />
         </Panel>
         <br />
@@ -306,15 +306,16 @@ function AccountEdit() {
           <h3>Black List</h3>
           <hr />
           <p>
-            Drip refers to the minimum time interval necessary between
-            interactions, such as following, liking, commenting, and messaging.
+            Black list is a list of users that you wish to never take positive
+            action against. ie follow, message, like or coment on any content by
+            these users
           </p>
           <Input
             as="textarea"
             value={blackList}
             onChange={setBlackList}
             rows={3}
-            placeholder="User_1, User_2, User_3"
+            placeholder="Separate users with semicolon"
           />
         </Panel>
         <br />
